@@ -13,12 +13,12 @@ const App= ()=>{
 
     useEffect(()=>{
         dispatch(getPosts());
-    },[dispatch,currentId])
+    },[currentId,dispatch])
     
     return(
         <Container maxwidth='lg'>
-            <AppBar  className={classes.appBar} position='static' color='inherit'>
-                <Typography className={classes.heading} variant='h2' align='center'>WanderLust</Typography>
+            <AppBar  className={classes.appBar} position='static' color='none'>
+                <Typography className={classes.heading} variant='h4' align='center'>WanderLust</Typography>
                 <img className={classes.image} src={wanderLustImg} alt='WanderLust' height="60"></img>
             </AppBar>
             <Grow in>
