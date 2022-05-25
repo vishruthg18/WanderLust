@@ -18,7 +18,7 @@ const App= ()=>{
     return(
         <Container maxwidth='lg'>
             <AppBar  className={classes.appBar} position='static' color='none'>
-                <Typography className={classes.heading} variant='h4' align='center'>WanderLust</Typography>
+                <Typography className={classes.heading} variant='h4' align='center'>Wanderlust</Typography>
                 <img className={classes.image} src={wanderLustImg} alt='WanderLust' height="60"></img>
             </AppBar>
             <Grow in>
