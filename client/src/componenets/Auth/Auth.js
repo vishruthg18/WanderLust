@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Icon from './Icon';
 import useStyles from './styles'
 import Input from './input';
+import {signin,signup} from '../../actions/auth'
 import {useDispatch} from 'react-redux'
 
 const initialState={firstName:'',lastName:'',email:'',password:'',confirmPassword:''}
@@ -22,7 +23,11 @@ const Auth = () => {
     const handleShowPassword=()=>setShowPassword((prevShowPassword)=>!prevShowPassword)
     const handleSubmit=(e)=>{
         e.preventDefault();
-            console.log(formData)
+          if(isSignup){
+            dispatch(signup(formData,history))
+          }else{
+            dispatch(signin(formData,history))
+          }
     }
 
     const switchMode=()=>{setIsSignup(!isSignup)
