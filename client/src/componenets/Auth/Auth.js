@@ -31,7 +31,7 @@ const Auth = () => {
     }
 
     const switchMode=()=>{setIsSignup(!isSignup)
-    handleShowPassword(false)}
+    setShowPassword(false)}
 
     const googleSuccess=async (res)=>{
        const result=res?.profileObj;

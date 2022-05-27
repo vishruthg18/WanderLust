@@ -1,42 +1,48 @@
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import User from '../models/user.js'
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-export const signin =async(req,res)=>{
-   const{email,password}=req.body;
-   try {
-       const exisitngUser=await User.findOne({email});
+import UserModal from "../models/user.js";
 
-       if(!exisitngUser) return res.status(404).json({message:"User does not exist"})
+const secret = 'test';
 
-       const isPasswordCorrect= await bcrypt.compare(password,exisitngUser.password)
+export const signin = async (req, res) => {
+  const { email, password } = req.body;
 
-       if(!isPasswordCorrect) res.status(400).json({message:"Password Incorrect"})
+  try {
+    const oldUser = await UserModal.findOne({ email });
 
-       const token=jwt.sign({email:exisitngUser.email,id:exisitngUser._id},'test',{expiresIn:'1h'})
+    if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
-       res.status(200).json({result:exisitngUser,token})
-   } catch (error) {
-       res.status(500).json({message:'Oops! Something went wrong.'})
-   }
-}
+    const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
 
-export const signup =async(req,res)=>{
-    const{email,password,confirmPassword,firstName,lastName}=req.body;
-    try {
-        const exisitngUser=await User.findOne({email});
-        if(exisitngUser) return res.status(400).json({message:"User already exists"})
-        
-        if(password!=confirmPassword) res.status(400).json({message:"Psswords dont match"})
+    if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
-        const hashedPassword= await bcrypt.hash(password,12);
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
 
-        const result=await User.create({email,password:hashedPassword,name:`${firstName} ${lastName}`})
+    res.status(200).json({ result: oldUser, token });
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
 
-        const token=jwt.sign({email:result.email,id:result._id},'test',{expiresIn:'1h'})
-        res.status(200).json({result,token})
-        
-    } catch (error) {
-        res.status(500).json({message:'Something went wrong'})
-    }
-}
+export const signup = async (req, res) => {
+  const { email, password, firstName, lastName } = req.body;
+
+  try {
+    const oldUser = await UserModal.findOne({ email });
+
+    if (oldUser) return res.status(400).json({ message: "User already exists" });
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const result = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
+
+    const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
+
+    res.status(201).json({ result, token });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+    
+    console.log(error);
+  }
+};
