@@ -36,21 +36,24 @@ const Home = () => {
 
     
 
-    useEffect(()=>{
-        dispatch(getPosts());
-    },[currentId,dispatch])
+   
 
     const searchPost=()=>{
-      if(search.trim()){
+      console.log('search', search, 'tags',tags)
+      if(search.trim() || tags.length){
+        console.log('after button click')
         dispatch(getPostsBySearch({search,tags:tags.join(',')}))
+        history.push(`/posts/search?searchQuery=${search}||'none'&tags=${tags.join(',')}`)
       }
       else{
+        dispatch(getPosts(1))
         history.push('/')
+        
       }
     }
 
     return( <Grow in>
-        <Container maxwidth='xl'>
+        <Container maxWidth='xl'>
     <Grid container justifyContent="space-between" alignItems="stretch" spacing={3} className={mergeClasses.gridContanier}>
       <Grid item xs={12} sm={6} md={9}>
         <Posts setCurrentId={setCurrentId}/>
@@ -78,9 +81,11 @@ const Home = () => {
           <Button onClick={searchPost} color='primary' variant='contained'className={classes.searchButton}>Search</Button>
         </AppBar>
           <Form currentId={currentId} setCurrentId={setCurrentId}/>
-          <Paper  elevation={6}>
-          <Pagination/>
+          {(!searchQuery && !tags.length) &&
+          (<Paper  elevation={6}>
+          <Pagination page={page} className={classes.pagination}/>
           </Paper>
+          )}
       </Grid>
     </Grid>
     </Container>
