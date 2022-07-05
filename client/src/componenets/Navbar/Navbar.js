@@ -4,7 +4,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
-import WanderLustImg from '../../images/WanderLustImg.png';
+import memoriesLogo from '../../images/WanderLustImg.png';
 import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 
@@ -37,24 +37,20 @@ const Navbar = () => {
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-      <Link to={'/'} className={classes.brandContainer}>
-        <Typography component={Link} to="/" className={classes.heading} variant="h4" align="center">WanderLust</Typography>
-        <img className={classes.image} src={WanderLustImg} alt="icon" height="60" />
+      <Link to="/" className={classes.brandContainer}>
+      <Typography component={Link} to="/" className={classes.heading} variant="h4" align="center">WanderLust</Typography>
+        <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
       </Link>
       <Toolbar className={classes.toolbar}>
-      
-        {user?.result ? ( 
-            <div className={classes.profile}>
-            <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
-            <Typography className={classes.userName} variant="body2">{user?.result.name}</Typography>
-            <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
-            </div>
-        ) : (
+        {user?.result ? (
           <div className={classes.profile}>
-          <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+            <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
+            <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
+            <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
           </div>
+        ) : (
+          <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
         )}
-       
       </Toolbar>
     </AppBar>
   );
