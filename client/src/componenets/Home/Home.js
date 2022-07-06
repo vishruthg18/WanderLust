@@ -9,6 +9,7 @@ import {getPosts, getPostsBySearch} from '../../actions/posts';
 import Pagination from '../Pagination'
 import { mergeClasses } from '@material-ui/styles';
 import useStyles from './styles'
+import backg from '../../images/travelbg.jpg'
 function useQuery(){
   return new URLSearchParams(useLocation().search)
 }
@@ -52,8 +53,8 @@ const Home = () => {
       }
     }
 
-    return( <Grow in>
-        <Container maxWidth='xl'>
+    return( <Grow in style={{background:backg}}>
+<Container maxWidth='xl' style={{background:backg}}>
     <Grid container justifyContent="space-between" alignItems="stretch" spacing={3} className={mergeClasses.gridContanier}>
       <Grid item xs={12} sm={6} md={9}>
         <Posts setCurrentId={setCurrentId}/>

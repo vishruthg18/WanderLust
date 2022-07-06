@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
+  background:{
+   backgroundImage:'../../images/travelbg.jpg'
+  },
   appBarSearch: {
     borderRadius: 4,
     marginBottom: '1rem',

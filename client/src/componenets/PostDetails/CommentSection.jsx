@@ -12,7 +12,7 @@ const CommentSection = ({ post }) => {
   const [comments, setComments] = useState(post?.comments);
   const classes = useStyles();
   const commentsRef = useRef();
-
+ console.log('user',user?.result?._id)
   const handleComment = async () => {
     const newComments = await dispatch(commentPost(`${user?.result?.name}: ${comment}`, post._id));
 
@@ -34,7 +34,7 @@ const CommentSection = ({ post }) => {
             </Typography>
           ))}
           <div ref={commentsRef} />
-        </div>
+        </div>{ user?.result?.googleID || user?.result?._id ?
         <div style={{ width: '50%' }}>
           <Typography gutterBottom variant="h6">Write a comment</Typography>
           <TextField fullWidth rows={4} variant="outlined" label="Comment" multiline value={comment} onChange={(e) => setComment(e.target.value)} />
@@ -42,7 +42,8 @@ const CommentSection = ({ post }) => {
           <Button style={{ marginTop: '10px' }} fullWidth disabled={!comment.length} color="primary" variant="contained" onClick={handleComment}>
             Comment
           </Button>
-        </div>
+        </div>: ""
+         }
       </div>
     </div>
   );
