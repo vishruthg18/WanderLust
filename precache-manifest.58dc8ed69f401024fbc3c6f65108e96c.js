@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "79facda7a979a167e46a3dd4fd39f3a7",
+    "revision": "1b18f4f2b50b22c8c6fa442c137712c0",
     "url": "/WanderLust/index.html"
   },
   {
-    "revision": "88bf75ac109d777b2775",
+    "revision": "402b0a7626b3c37a5fba",
     "url": "/WanderLust/static/css/main.f64c8c26.chunk.css"
   },
   {
@@ -16,12 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/WanderLust/static/js/2.2bf41a56.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "88bf75ac109d777b2775",
-    "url": "/WanderLust/static/js/main.1f054445.chunk.js"
+    "revision": "402b0a7626b3c37a5fba",
+    "url": "/WanderLust/static/js/main.4bff5c29.chunk.js"
   },
   {
     "revision": "4e0e34f265fae8f33b01b27ae29d9d6f",
-    "url": "/WanderLust/static/js/main.1f054445.chunk.js.LICENSE.txt"
+    "url": "/WanderLust/static/js/main.4bff5c29.chunk.js.LICENSE.txt"
   },
   {
     "revision": "726e2792359ca74e0da4",
