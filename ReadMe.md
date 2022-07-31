@@ -11,3 +11,4 @@ To start the front end----->
 3. Run the command 'npm install'.
 4. Run the command 'npm start'.
 
+URL to Deployed website: https://vishruthg18.github.io/WanderLust
